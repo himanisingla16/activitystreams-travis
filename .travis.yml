@@ -9,3 +9,6 @@ before_install:
   - sleep 100
   - chmod +x ./components/seed-data.sh
   - ./components/seed-data.sh
+ 	- docker-compose -f components/docker-compose-local-travis.yaml up --build -d
+after_script:
+  - docker-compose down
