@@ -11,4 +11,4 @@ before_install:
   - ./components/seed-data.sh
  	- docker-compose -f components/docker-compose-local-travis.yaml up --build -d
 after_script:
-	- docker-compose down 
+  - docker-compose down
