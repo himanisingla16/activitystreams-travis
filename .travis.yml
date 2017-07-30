@@ -10,6 +10,7 @@ before_install:
   - chmod +x ./components/seed-data.sh
   - ./components/seed-data.sh
   - ver=1 docker-compose -f components/docker-compose-local-travis.yaml up --build -d rest-api
+  - chmod +x ./test/test.spec.js
 script:
   - ./test/test.spec.js
 after-script:
