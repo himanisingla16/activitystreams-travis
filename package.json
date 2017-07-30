@@ -4,7 +4,7 @@
   "description": "",
   "main": "start.js",
   "scripts": {
-    "test": "node test/test.spec.js"
+    "test": "mocha /test/test.spec.js"
   },
   "repository": {
     "type": "git",
