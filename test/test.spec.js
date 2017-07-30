@@ -10,7 +10,7 @@ describe('Circle API', function() {
 		.post('/circle')
 		.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 		.end((err, res) => {
-			res.should.have.status(200);
+			res.should.have.status(201);
 			expect(res.body).to.be.an('object').to.have.property('circleId');
 			expect(res.body).to.be.an('object').to.have.property('mailboxId');
 			expect(res.body).to.be.an('object').to.have.property('createdOn');
