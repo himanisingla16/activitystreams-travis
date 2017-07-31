@@ -36,6 +36,10 @@ describe('Circle API', function() {
 					if (err) { done(err); return; }
 					res.should.have.status(201);
 					expect(res.body).to.be.an('object').to.have.property('payload');
+					expect(res.body).to.be.an('object').to.have.property('items');
+					expect(res.body).to.be.an('object').to.have.property('totalItems');
+					expect(res.body).to.be.an('object').to.have.property('first');
+					expect(res.body).to.be.an('object').to.have.property('last');
 					done();
 				});
 			});
