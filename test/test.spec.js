@@ -14,7 +14,7 @@ describe('Circle API', function() {
 			expect(res.body).to.be.an('object').to.have.property('circleId');
 			expect(res.body).to.be.an('object').to.have.property('mailboxId');
 			expect(res.body).to.be.an('object').to.have.property('createdOn');
-			let circleId = res.body.circleId;
+			/*let circleId = res.body.circleId;
 			let circleMailboxId = res.body.mailboxId;
 			if(!circleId || !circleMailboxId) { done(); return;}
 			chai.request('http://localhost:4000')
@@ -42,7 +42,7 @@ describe('Circle API', function() {
 					expect(res.body).to.be.an('object').to.have.property('last');
 					done();
 				});
-			});
+			});*/
 		});
 	});
 });
