@@ -18,25 +18,34 @@ describe('Circle API', function() {
 			expect(res.body).to.be.an('object').to.have.property('createdOn');
 			let circleId = res.body.circleId;
 			let circleMailboxId = res.body.mailboxId;
-			if(circleId && circleMailboxId){
+			if(!circleId || !circleMailboxId) { done(); return;}
+			chai.request('http://localhost:4000')
+			.post(`/circle/${circleMailboxId}/activity`)
+			.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
+			.send({ link: 'www.facebook.com' })
+			.expect('Content-Type', /json/)
+			.end((err, res) => {
+				console.log(res);
+				console.log(err);
+				if (err) { done(err); return; }
+				res.should.have.status(201);
+				expect(res.body).to.be.an('object').to.have.property('payload');
+				expect(res.body.payload).to.be.an.('object').to.have.property('link');
 				chai.request('http://localhost:4000')
-				.post(`/circle/${circleMailboxId}/activity`)
+				.post(`/mailbox/${circleMailboxId}/activity`)
 				.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 				.send({ link: 'www.facebook.com' })
-        		.expect('Content-Type', /json/)
-        		.end((err, res) => {
-        			console.log(res);
+				.expect('Content-Type', /json/)
+				.end((err, res) => {
+					console.log(res);
 					console.log(err);
-          			if (err) { done(err); return; }
-          			res.should.have.status(201);
-            		expect(res.body).to.be.an('object').to.have.property('payload');
-            		expect(resbody.payload).to.be.an.('object').to.have.property('link');
-            		done();
-        		});
-			}
-			else{
-				done();
-			}
+					if (err) { done(err); return; }
+					res.should.have.status(201);
+					expect(res.body).to.be.an('object').to.have.property('payload');
+					expect(res.body.payload).to.be.an.('object').to.have.property('link');
+
+				});
+			});
 		});
 	});
 });
