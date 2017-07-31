@@ -14,6 +14,7 @@ describe('Circle API', function() {
 			expect(res.body).to.be.an('object').to.have.property('circleId');
 			expect(res.body).to.be.an('object').to.have.property('mailboxId');
 			expect(res.body).to.be.an('object').to.have.property('createdOn');
+			done();
 			/*let circleId = res.body.circleId;
 			let circleMailboxId = res.body.mailboxId;
 			if(!circleId || !circleMailboxId) { done(); return;}
