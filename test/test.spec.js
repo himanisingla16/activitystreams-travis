@@ -10,8 +10,6 @@ describe('Circle API', function() {
 		.post('/circle')
 		.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 		.end((err, res) => {
-			console.log(res);
-			console.log(err);
 			res.should.have.status(201);
 			expect(res.body).to.be.an('object').to.have.property('circleId');
 			expect(res.body).to.be.an('object').to.have.property('mailboxId');
@@ -23,10 +21,7 @@ describe('Circle API', function() {
 			.post(`/circle/${circleMailboxId}/activity`)
 			.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 			.send({ link: 'www.facebook.com' })
-			.expect('Content-Type', /json/)
 			.end((err, res) => {
-				console.log(res);
-				console.log(err);
 				if (err) { done(err); return; }
 				res.should.have.status(201);
 				expect(res.body).to.be.an('object').to.have.property('payload');
@@ -36,7 +31,7 @@ describe('Circle API', function() {
 				.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 				.expect('Content-Type', /json/)
 				.end((err, res) => {
-					console.log(res);
+					console.log(res.body);
 					console.log(err);
 					if (err) { done(err); return; }
 					res.should.have.status(201);
