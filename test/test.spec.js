@@ -28,7 +28,7 @@ describe('Circle API', function() {
 				expect(res.body).to.be.an('object').to.have.property('payload');
 				expect(res.body.payload).to.be.an('object').to.have.property('link');
 				chai.request('http://localhost:4000')
-				.post(`/mailbox/getallactivities/${circleMailboxId}`)
+				.get(`/mailbox/getallactivities/${circleMailboxId}`)
 				.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 				.end((err, res) => {
 					console.log(res.body);
