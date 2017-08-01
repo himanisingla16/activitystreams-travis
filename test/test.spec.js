@@ -19,7 +19,7 @@ describe('Circle API', function() {
 			let circleMailboxId = res.body.mailboxId;
 			if(!circleId || !circleMailboxId) { done(); return;}
 			chai.request('http://localhost:4000')
-			.post(`/circle/${circleMailboxId}/activity`)
+			.post(`/circle/${circleId}/activity`)
 			.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 			.send({ link: 'www.facebook.com' })
 			.end((err, res) => {
@@ -27,8 +27,7 @@ describe('Circle API', function() {
 				res.should.have.status(201);
 				expect(res.body).to.be.an('object').to.have.property('payload');
 				expect(res.body.payload).to.be.an('object').to.have.property('link');
-				done();
-				/*chai.request('http://localhost:4000')
+				chai.request('http://localhost:4000')
 				.post(`/mailbox/getallactivities/${circleMailboxId}`)
 				.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
 				.expect('Content-Type', /json/)
@@ -37,13 +36,13 @@ describe('Circle API', function() {
 					console.log(err);
 					if (err) { done(err); return; }
 					res.should.have.status(201);
-					expect(res.body).to.be.an('object').to.have.property('payload');
 					expect(res.body).to.be.an('object').to.have.property('items');
 					expect(res.body).to.be.an('object').to.have.property('totalItems');
 					expect(res.body).to.be.an('object').to.have.property('first');
 					expect(res.body).to.be.an('object').to.have.property('last');
+					expect(res.body).to.be.an('object').to.have.property('payload');
 					done();
-				});*/
+				});
 			});
 		});
 	});

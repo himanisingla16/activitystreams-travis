@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/himanisingla16/activitystreams-travis#readme",
   "dependencies": {
+    "@angular/cli": "^1.2.6",
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
     "mocha": "^3.4.2",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.2.6"
   }
 }
