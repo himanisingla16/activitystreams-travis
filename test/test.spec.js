@@ -5,6 +5,20 @@ let expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('Circle API', function() {
+
+	before((done) => {
+		chai.request('http://localhost:4000')
+		.post('/multiplexer/dev_m1')
+		.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiY2lyY2xlczphbGwiLCJmb2xsb3dzOmFsbCIsIm1haWxib3g6YWxsIl0sImlhdCI6MTUwMDU3MDYyMX0.YqHdtxTPeq5UoT9yUhQw9gziURvdHAfaiALOwlhGCTg`)
+		.end((err, res) => {
+			res.should.have.status(201);
+			console.log(err);
+			console.log(res);
+			done();
+		});
+	});
+
+
 	it('circles mailbox gets all the messages immediately', (done) => {
 		chai.request('http://localhost:4000')
 		.post('/circle')
@@ -39,7 +53,6 @@ describe('Circle API', function() {
 					expect(res.body).to.be.an('object').to.have.property('totalItems');
 					expect(res.body).to.be.an('object').to.have.property('first');
 					expect(res.body).to.be.an('object').to.have.property('last');
-					expect(res.body).to.be.an('object').to.have.property('payload');
 					done();
 				});
 			});
